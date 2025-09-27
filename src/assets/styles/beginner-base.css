@@ -1,0 +1,102 @@
+/* ===== 初学者版本：基础样式 ===== */
+
+/* 基础重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 根元素配置 */
+html {
+  font-size: 16px;
+  /* 基础字体大小 */
+  height: 100%;
+}
+
+body {
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  background: #0f0f0f;
+  /* 深色背景 */
+  color: #fff;
+  /* 白色文字 */
+  line-height: 1.6;
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+/* 链接样式 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+/* 图片响应式 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 按钮基础样式 */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+/* 输入框基础样式 */
+input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #409eff;
+  border-radius: 3px;
+}
+
+/* 容器样式 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 清除浮动 */
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* 响应式断点 */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+}
