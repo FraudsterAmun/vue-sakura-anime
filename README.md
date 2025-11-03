@@ -10,8 +10,6 @@
 
 **基于 Vue3 生态系统的现代化动漫展示平台**
 
-[在线预览](your-demo-url) · [项目文档](your-docs-url) · [问题反馈](https://github.com/your-username/vue-movie/issues)
-
 </div>
 
 ---
