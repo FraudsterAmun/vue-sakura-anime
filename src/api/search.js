@@ -6,7 +6,7 @@ import request from '@/utils/request'
  * @returns {Promise}
  */
 export const fuzzySearch = (keyword) => {
-  return request.get('/home/fuzzySearch', {
+  return request.get('/search/fuzzy', {
     params: {
       keyword,
     },
