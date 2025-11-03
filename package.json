@@ -20,7 +20,8 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "docker:build": "docker build -t vue-movie .",
-    "docker:run": "docker run -p 3000:80 vue-movie"
+    "docker:run": "docker run -p 3000:80 vue-movie",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",

@@ -1,18 +1,12 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
-import {
-  Search,
-  Timer,
-  VideoPlay,
-  Collection,
-  DataAnalysis,
-  Expand,
-  User,
-} from '@element-plus/icons-vue'
+import { Timer, VideoPlay, Collection, DataAnalysis, Expand, User } from '@element-plus/icons-vue'
 
 import { Icon } from '@iconify/vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useScroll, useElementBounding } from '@vueuse/core'
+import SearchBox from '@/components/SearchBox.vue'
+
 const route = useRoute()
 const router = useRouter()
 
@@ -469,11 +463,7 @@ onBeforeUnmount(() => {
             </span>
           </nav>
           <div class="search">
-            <input type="text" placeholder="搜索..." class="search-input" />
-            <button class="search-button">
-              <Search />
-              <span>搜索</span>
-            </button>
+            <SearchBox />
           </div>
           <div class="conch-list">
             <ul class="conch-list-ul">
@@ -595,7 +585,7 @@ onBeforeUnmount(() => {
   z-index: 1000;
   box-shadow: 0 0 20px hsla(0, 0%, 0%, 0.3);
   transition: all 0.3s ease;
-  overflow: hidden;
+  overflow: visible; /* 改为 visible，允许搜索下拉框显示 */
 }
 
 /* 详情页透明背景 */
@@ -675,6 +665,8 @@ onBeforeUnmount(() => {
   background-color: #252525;
   line-height: 30px;
   border-radius: 20px;
+  overflow: visible; /* 允许下拉框溢出显示 */
+  z-index: 9999; /* 确保在导航栏其他元素之上 */
 }
 .search-input {
   height: 100%;

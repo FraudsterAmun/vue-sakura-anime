@@ -48,6 +48,16 @@ const router = createRouter({
             keywords: '动漫分类,动漫列表,樱花动漫',
           },
         },
+        {
+          path: 'search',
+          name: 'Search',
+          component: () => import('@/views/search/index.vue'),
+          meta: {
+            title: '搜索结果 - 樱花动漫',
+            description: '搜索动漫内容，樱花动漫提供精准的搜索服务。',
+            keywords: '搜索,动漫搜索,樱花动漫',
+          },
+        },
       ],
     },
   ],

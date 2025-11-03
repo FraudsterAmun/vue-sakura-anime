@@ -224,6 +224,781 @@
 }
 
 /* ====================
+   CSS Grid 布局工具类
+==================== */
+
+/* 基础Grid */
+.grid {
+  display: grid;
+}
+
+.inline-grid {
+  display: inline-grid;
+}
+
+/* Grid 列数 */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* Grid 行数 */
+.grid-rows-1 {
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.grid-rows-4 {
+  grid-template-rows: repeat(4, 1fr);
+}
+
+/* Grid 间距 */
+.gap-0 {
+  gap: 0;
+}
+
+.gap-1 {
+  gap: 4px;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+.gap-3 {
+  gap: 12px;
+}
+
+.gap-4 {
+  gap: 16px;
+}
+
+.gap-5 {
+  gap: 20px;
+}
+
+.gap-6 {
+  gap: 24px;
+}
+
+/* 单独的行/列间距 */
+.gap-x-0 {
+  column-gap: 0;
+}
+
+.gap-x-1 {
+  column-gap: 4px;
+}
+
+.gap-x-2 {
+  column-gap: 8px;
+}
+
+.gap-x-3 {
+  column-gap: 12px;
+}
+
+.gap-x-4 {
+  column-gap: 16px;
+}
+
+.gap-y-0 {
+  row-gap: 0;
+}
+
+.gap-y-1 {
+  row-gap: 4px;
+}
+
+.gap-y-2 {
+  row-gap: 8px;
+}
+
+.gap-y-3 {
+  row-gap: 12px;
+}
+
+.gap-y-4 {
+  row-gap: 16px;
+}
+
+/* Grid 子项跨列 */
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+/* Grid 子项跨行 */
+.row-span-1 {
+  grid-row: span 1 / span 1;
+}
+
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+
+.row-span-3 {
+  grid-row: span 3 / span 3;
+}
+
+.row-span-full {
+  grid-row: 1 / -1;
+}
+
+/* Grid 子项对齐 */
+.justify-self-auto {
+  justify-self: auto;
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.justify-self-stretch {
+  justify-self: stretch;
+}
+
+.align-self-auto {
+  align-self: auto;
+}
+
+.align-self-start {
+  align-self: start;
+}
+
+.align-self-end {
+  align-self: end;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-stretch {
+  align-self: stretch;
+}
+
+/* Grid 内容对齐 */
+.justify-items-start {
+  justify-items: start;
+}
+
+.justify-items-end {
+  justify-items: end;
+}
+
+.justify-items-center {
+  justify-items: center;
+}
+
+.justify-items-stretch {
+  justify-items: stretch;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.align-items-end {
+  align-items: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-stretch {
+  align-items: stretch;
+}
+
+/* 常用Grid组合类 */
+.grid-center {
+  display: grid;
+  place-items: center;
+}
+
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ====================
+   颜色工具类 (基于项目实际使用)
+==================== */
+
+/* 背景颜色 */
+.bg-primary {
+  background-color: #0f0f0f;
+  /* 主体背景 */
+}
+
+.bg-secondary {
+  background-color: #1a1a1a;
+  /* 次要背景 */
+}
+
+.bg-card {
+  background-color: #252525;
+  /* 卡片背景 */
+}
+
+.bg-dark {
+  background-color: #2a2a2a;
+  /* 深色背景 */
+}
+
+.bg-sidebar {
+  background-color: #3a3a3a;
+  /* 侧边栏背景 */
+}
+
+.bg-accent {
+  background-color: #ff6600;
+  /* 主题色背景 */
+}
+
+.bg-accent-hover {
+  background-color: #f46b03;
+  /* 主题色悬停 */
+}
+
+.bg-success {
+  background-color: #51b23c;
+  /* 成功色 */
+}
+
+.bg-danger {
+  background-color: #ff4444;
+  /* 危险色 */
+}
+
+.bg-warning {
+  background-color: #ff8800;
+  /* 警告色 */
+}
+
+.bg-black-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 黑色遮罩 */
+}
+
+.bg-black-overlay-dark {
+  background-color: rgba(0, 0, 0, 0.6);
+  /* 深色遮罩 */
+}
+
+/* 文字颜色 */
+.text-primary {
+  color: #fff;
+  /* 主要文字 */
+}
+
+.text-secondary {
+  color: #ccc;
+  /* 次要文字 */
+}
+
+.text-muted {
+  color: #999;
+  /* 静音文字 */
+}
+
+.text-disabled {
+  color: #888;
+  /* 禁用文字 */
+}
+
+.text-subtle {
+  color: #666;
+  /* 微妙文字 */
+}
+
+.text-accent {
+  color: #ff6600;
+  /* 主题色文字 */
+}
+
+.text-accent-hover {
+  color: #f46b03;
+  /* 主题色悬停 */
+}
+
+.text-danger {
+  color: #ff4444;
+  /* 危险色文字 */
+}
+
+.text-warning {
+  color: #ff8800;
+  /* 警告色文字 */
+}
+
+.text-rating {
+  color: #f50;
+  /* 评分颜色 */
+}
+
+/* ====================
+   字体工具类
+==================== */
+
+/* 字体大小 */
+.text-xs {
+  font-size: 10px;
+}
+
+.text-sm {
+  font-size: 12px;
+}
+
+.text-base {
+  font-size: 14px;
+}
+
+.text-md {
+  font-size: 16px;
+}
+
+.text-lg {
+  font-size: 18px;
+}
+
+.text-xl {
+  font-size: 20px;
+}
+
+.text-2xl {
+  font-size: 24px;
+}
+
+.text-3xl {
+  font-size: 28px;
+}
+
+/* 字体粗细 */
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+/* 行高 */
+.leading-none {
+  line-height: 1;
+}
+
+.leading-tight {
+  line-height: 1.2;
+}
+
+.leading-snug {
+  line-height: 1.3;
+}
+
+.leading-normal {
+  line-height: 1.4;
+}
+
+.leading-relaxed {
+  line-height: 1.5;
+}
+
+/* 字间距 */
+.tracking-tight {
+  letter-spacing: -0.05em;
+}
+
+.tracking-normal {
+  letter-spacing: 0;
+}
+
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+
+.tracking-wider {
+  letter-spacing: 0.1em;
+}
+
+/* ====================
+   边框工具类
+==================== */
+
+/* 边框宽度 */
+.border {
+  border-width: 1px;
+}
+
+.border-0 {
+  border-width: 0;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-r {
+  border-right-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-l {
+  border-left-width: 1px;
+}
+
+/* 边框颜色 */
+.border-gray-600 {
+  border-color: #333;
+}
+
+.border-gray-500 {
+  border-color: #555;
+}
+
+.border-gray-400 {
+  border-color: #666;
+}
+
+/* 边框样式 */
+.border-solid {
+  border-style: solid;
+}
+
+.border-none {
+  border-style: none;
+}
+
+/* 列表样式 */
+.list-none {
+  list-style: none;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
+/* 最后一个子元素工具类 */
+.last\:border-b-0:last-child {
+  border-bottom-width: 0;
+}
+
+/* ====================
+   边框圆角工具类
+==================== */
+
+/* 常用圆角 */
+.rounded-sm {
+  border-radius: 3px;
+}
+
+.rounded-base {
+  border-radius: 4px;
+}
+
+.rounded-md {
+  border-radius: 6px;
+}
+
+.rounded-lg {
+  border-radius: 8px;
+}
+
+.rounded-xl {
+  border-radius: 10px;
+}
+
+.rounded-2xl {
+  border-radius: 12px;
+}
+
+.rounded-3xl {
+  border-radius: 16px;
+}
+
+.rounded-4xl {
+  border-radius: 20px;
+}
+
+.rounded-pill {
+  border-radius: 50px;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+/* ====================
+   悬停效果工具类
+==================== */
+
+/* 颜色悬停 */
+.hover\:text-accent:hover {
+  color: #ff6600;
+}
+
+.hover\:text-primary:hover {
+  color: #fff;
+}
+
+.hover\:bg-accent:hover {
+  background-color: #ff6600;
+}
+
+.hover\:bg-card:hover {
+  background-color: #252525;
+}
+
+.hover\:bg-overlay:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 变换悬停 */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-110:hover {
+  transform: scale(1.1);
+}
+
+.hover\:scale-120:hover {
+  transform: scale(1.2);
+}
+
+/* ====================
+   布局辅助工具类
+==================== */
+
+/* 垂直对齐 */
+.align-top {
+  vertical-align: top;
+}
+
+.align-middle {
+  vertical-align: middle;
+}
+
+.align-bottom {
+  vertical-align: bottom;
+}
+
+.align-text-top {
+  vertical-align: text-top;
+}
+
+.align-text-bottom {
+  vertical-align: text-bottom;
+}
+
+/* 对象适配 */
+.object-contain {
+  object-fit: contain;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-fill {
+  object-fit: fill;
+}
+
+/* ====================
+   组件样式工具类
+==================== */
+
+/* 按钮样式 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.btn-primary {
+  background-color: #ff6600;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #f46b03;
+}
+
+.btn-secondary {
+  background-color: #252525;
+  color: #ccc;
+}
+
+.btn-secondary:hover {
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: #252525;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-dark {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 遮罩层 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-dark {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.overlay:hover,
+.group:hover .overlay {
+  opacity: 1;
+}
+
+/* 滚动条样式 */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #2a2a2a;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* 排名样式 */
+.rank-1 {
+  color: #ff4444;
+  /* 第一名：红色 */
+}
+
+.rank-2 {
+  color: #ff8800;
+  /* 第二名：橙色 */
+}
+
+.rank-3 {
+  color: #ffaa00;
+  /* 第三名：黄色 */
+}
+
+.rank-other {
+  color: #999;
+  /* 其他排名：灰色 */
+}
+
+/* ====================
    间距工具类
 ==================== */
 
@@ -757,6 +1532,20 @@
 
 .whitespace-pre-wrap {
   white-space: pre-wrap;
+}
+
+/* 文本装饰 */
+.no-underline {
+  text-decoration: none;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/* 文本颜色继承 */
+.text-inherit {
+  color: inherit;
 }
 
 /* ====================

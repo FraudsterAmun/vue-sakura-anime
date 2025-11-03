@@ -12,7 +12,7 @@ declare module 'vue' {
     AnimeCardGrid: typeof import('./src/components/AnimeCardGrid.vue')['default']
     AnimeCardItem: typeof import('./src/components/AnimeCardItem.vue')['default']
     AnimeCardList: typeof import('./src/components/AnimeCardList.vue')['default']
-    AnimeFilter: typeof import('./src/components/AnimeFilter.vue')['default']
+    AnimeFilter: typeof import('./src/views/type/components/AnimeFilter.vue')['default']
     AnimeHeader: typeof import('./src/components/AnimeHeader.vue')['default']
     AnimeRankingList: typeof import('./src/components/AnimeRankingList.vue')['default']
     copy: typeof import('./src/components/AnimeCard copy.vue')['default']
@@ -47,9 +47,10 @@ declare module 'vue' {
     OptimizedImage: typeof import('./src/components/OptimizedImage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchBox: typeof import('./src/components/SearchBox.vue')['default']
     SemanticLayout: typeof import('./src/components/SemanticLayout.vue')['default']
     SimpleCard: typeof import('./src/components/examples/SimpleCard.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList.vue')['default']
-    WeekItem: typeof import('./src/components/WeekItem.vue')['default']
+    WeekItem: typeof import('./src/views/home/components/WeekItem.vue')['default']
   }
 }

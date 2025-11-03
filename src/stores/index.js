@@ -9,3 +9,4 @@ export default pinia
 export * from './modules/home'
 export * from './modules/detail'
 export * from './modules/country'
+export * from './modules/search'
