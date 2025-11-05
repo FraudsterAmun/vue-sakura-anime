@@ -6,42 +6,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 /**
- * 静态设备检测工具
- * 用于一次性检测设备类型，不监听窗口变化
- */
-export const deviceUtils = {
-  // 检测是否为移动端
-  isMobile: (breakpoint = 768) => window.innerWidth <= breakpoint,
-
-  // 检测是否为平板
-  isTablet: () => window.innerWidth > 768 && window.innerWidth <= 992,
-
-  // 检测是否为桌面端
-  isDesktop: () => window.innerWidth > 992,
-
-  // 获取当前屏幕宽度
-  getScreenWidth: () => window.innerWidth,
-
-  // 获取设备类型
-  getDeviceType: () => {
-    const width = window.innerWidth
-    if (width <= 768) return 'mobile'
-    if (width <= 992) return 'tablet'
-    return 'desktop'
-  },
-}
-
-/**
- * 常用断点预设
- */
-export const breakpoints = {
-  mobile: 768,
-  tablet: 992,
-  desktop: 1200,
-  largeDesktop: 1920,
-}
-
-/**
  * 响应式设备检测 - Vue 组合式函数
  * 自动监听窗口大小变化，组件卸载时自动清理
  *

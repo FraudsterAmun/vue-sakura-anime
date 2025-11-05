@@ -316,26 +316,7 @@ onMounted(async () => {
               </div>
             </div>
           </div>
-          <div class="detail_others2">
-            <ul>
-              <li>
-                <a class="tool-item" href="javascript:;" draggable="false">
-                  <Icon icon="tabler:device-mobile" />
-                </a>
-                <a class="tool-item" href="javascript:;" draggable="false">
-                  <Icon icon="tabler:heart" />
-                </a>
-              </li>
-              <li>
-                <a class="tool-item" href="javascript:;" draggable="false">
-                  <Icon icon="tabler:edit" />
-                </a>
-                <a class="tool-item" href="javascript:;" draggable="false">
-                  <Icon icon="tabler:thumb-up" />
-                </a>
-              </li>
-            </ul>
-          </div>
+
           <div class="detail_side relative">
             <!-- 评分模块 -->
             <div id="rating-section" class="side_rating">
@@ -883,10 +864,6 @@ html {
   margin-top: 60px;
 }
 
-.detail_others2 {
-  display: none;
-}
-
 /* 4.6 工具图标样式 */
 .detail_tool_icon ul {
   gap: 12px;
@@ -1396,19 +1373,7 @@ html {
   .crumbs-all {
     display: none;
   }
-  .detail_others2 {
-    display: block;
-    width: 100%;
-    padding-top: 30px;
-  }
-  .detail_others2 ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .detail_others2 .tool-item {
-    margin: 0 5px;
-  }
+
   .w33 {
     display: none;
   }
