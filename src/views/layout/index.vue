@@ -564,7 +564,7 @@ onBeforeUnmount(() => {
     <!-- 底部 - Layout负责 -->
     <footer class="footer">
       <div class="footer-container">
-        <p>&copy; 2024 电影网站</p>
+        <p>&copy; 2025 樱花动漫</p>
       </div>
     </footer>
   </div>
