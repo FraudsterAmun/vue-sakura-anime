@@ -8,7 +8,7 @@
 
 /* ===== 1. 导入依赖 ===== */
 // Vue 核心组合式API
-import { onMounted, ref, computed, watch } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 // 路由相关
 import { useRoute } from 'vue-router'
 // 状态管理
@@ -20,8 +20,6 @@ import { Icon } from '@iconify/vue'
 import { ArrowRight } from '@element-plus/icons-vue'
 // 自定义组件
 import AnimeRankingList from '@/components/AnimeRankingList.vue'
-// SEO工具
-import { setAnimeSEO } from '@/utils/seo'
 
 /* ===== 2. 状态管理和路由初始化 ===== */
 const route = useRoute()
@@ -188,27 +186,10 @@ onMounted(async () => {
 
     // 7.2 异步数据加载
     await detailStore.getAnimeDetail(id)
-
-    // 7.3 设置动漫详情页SEO
-    if (detailStore.detail_info && detailStore.detail_info.title) {
-      setAnimeSEO(detailStore.detail_info)
-    }
   } catch {
     // TODO: 可以在这里添加错误处理逻辑，如显示错误提示
   }
 })
-
-/* ===== 8. 监听器 ===== */
-// 监听动漫详情信息变化，动态更新SEO
-watch(
-  () => detailStore.detail_info,
-  (newInfo) => {
-    if (newInfo && newInfo.title) {
-      setAnimeSEO(newInfo)
-    }
-  },
-  { deep: true },
-)
 </script>
 
 <template>

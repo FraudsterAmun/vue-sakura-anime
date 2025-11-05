@@ -1,10 +1,13 @@
 /**
- * 设备检测工具类
- * 用于统一管理移动端、平板端、桌面端的检测逻辑
+ * 设备检测工具
+ * 简单易懂的设备检测方案，适合团队协作
  */
+
+import { ref, onMounted, onUnmounted } from 'vue'
 
 /**
  * 静态设备检测工具
+ * 用于一次性检测设备类型，不监听窗口变化
  */
 export const deviceUtils = {
   // 检测是否为移动端
@@ -29,112 +32,6 @@ export const deviceUtils = {
 }
 
 /**
- * 响应式设备检测类
- * 用于需要监听设备变化的场景
- */
-export class ResponsiveDevice {
-  constructor(callback, breakpoint = 768) {
-    this.callback = callback
-    this.breakpoint = breakpoint
-    this.isMobile = window.innerWidth <= breakpoint
-    this.screenWidth = window.innerWidth
-
-    // 绑定this上下文
-    this.handleResize = this.handleResize.bind(this)
-
-    // 防抖处理，避免频繁触发
-    this.debounceTimer = null
-    this.debouncedResize = this.debouncedResize.bind(this)
-
-    // 添加事件监听
-    window.addEventListener('resize', this.debouncedResize)
-
-    // 初始调用回调
-    this.callback({
-      isMobile: this.isMobile,
-      screenWidth: this.screenWidth,
-      isTablet: this.screenWidth > 768 && this.screenWidth <= 992,
-      isDesktop: this.screenWidth > 992,
-    })
-  }
-
-  /**
-   * 防抖处理resize事件
-   */
-  debouncedResize() {
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer)
-    }
-    this.debounceTimer = setTimeout(this.handleResize, 150)
-  }
-
-  /**
-   * 处理屏幕尺寸变化
-   */
-  handleResize() {
-    const newWidth = window.innerWidth
-    const newIsMobile = newWidth <= this.breakpoint
-
-    // 只有状态真正变化时才触发回调
-    if (newIsMobile !== this.isMobile || newWidth !== this.screenWidth) {
-      this.isMobile = newIsMobile
-      this.screenWidth = newWidth
-
-      this.callback({
-        isMobile: this.isMobile,
-        screenWidth: this.screenWidth,
-        isTablet: this.screenWidth > 768 && this.screenWidth <= 992,
-        isDesktop: this.screenWidth > 992,
-      })
-    }
-  }
-
-  /**
-   * 清理资源，防止内存泄漏
-   */
-  destroy() {
-    window.removeEventListener('resize', this.debouncedResize)
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer)
-    }
-    this.callback = null
-  }
-
-  /**
-   * 手动触发检测
-   */
-  check() {
-    this.handleResize()
-  }
-}
-
-/**
- * 创建简单的设备检测器
- * @param {Function} callback 设备状态变化回调
- * @param {number} breakpoint 移动端断点，默认768
- * @returns {Object} 包含destroy方法的检测器实例
- */
-export function createDeviceDetector(callback, breakpoint = 768) {
-  const detector = new ResponsiveDevice(callback, breakpoint)
-
-  return {
-    // 销毁检测器
-    destroy: () => detector.destroy(),
-
-    // 手动检测
-    check: () => detector.check(),
-
-    // 获取当前状态
-    getCurrentState: () => ({
-      isMobile: detector.isMobile,
-      screenWidth: detector.screenWidth,
-      isTablet: detector.screenWidth > 768 && detector.screenWidth <= 992,
-      isDesktop: detector.screenWidth > 992,
-    }),
-  }
-}
-
-/**
  * 常用断点预设
  */
 export const breakpoints = {
@@ -142,4 +39,71 @@ export const breakpoints = {
   tablet: 992,
   desktop: 1200,
   largeDesktop: 1920,
+}
+
+/**
+ * 响应式设备检测 - Vue 组合式函数
+ * 自动监听窗口大小变化，组件卸载时自动清理
+ *
+ * @param {number} breakpoint - 移动端断点，默认 768px
+ * @returns {Object} 包含响应式设备状态的对象
+ *
+ * @example
+ * // 在组件中使用
+ * const { isMobile, screenWidth, isTablet, isDesktop } = useDevice()
+ *
+ * // 在模板中直接使用
+ * <div v-if="isMobile">移动端内容</div>
+ */
+export function useDevice(breakpoint = 768) {
+  // 响应式状态
+  const isMobile = ref(window.innerWidth <= breakpoint)
+  const screenWidth = ref(window.innerWidth)
+  const isTablet = ref(window.innerWidth > 768 && window.innerWidth <= 992)
+  const isDesktop = ref(window.innerWidth > 992)
+
+  // 防抖定时器
+  let resizeTimer = null
+
+  /**
+   * 更新设备状态
+   */
+  const updateDeviceState = () => {
+    const width = window.innerWidth
+    screenWidth.value = width
+    isMobile.value = width <= breakpoint
+    isTablet.value = width > 768 && width <= 992
+    isDesktop.value = width > 992
+  }
+
+  /**
+   * 防抖处理的 resize 事件
+   */
+  const handleResize = () => {
+    if (resizeTimer) {
+      clearTimeout(resizeTimer)
+    }
+    resizeTimer = setTimeout(updateDeviceState, 150)
+  }
+
+  // 组件挂载时添加监听
+  onMounted(() => {
+    window.addEventListener('resize', handleResize)
+  })
+
+  // 组件卸载时自动清理
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+    if (resizeTimer) {
+      clearTimeout(resizeTimer)
+    }
+  })
+
+  // 返回响应式状态
+  return {
+    isMobile,
+    screenWidth,
+    isTablet,
+    isDesktop,
+  }
 }

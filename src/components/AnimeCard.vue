@@ -2,12 +2,10 @@
 /* AnimeCard 组件 - 动漫卡片组件 */
 
 /* ===== 1. 导入依赖 ===== */
-// 1.1 Vue核心组合式API
-import { ref, onMounted, onUnmounted } from 'vue'
-// 1.2 Vue Router路由导航
+// 1.1 Vue Router路由导航
 import { useRouter } from 'vue-router'
-// 1.3 设备检测工具
-import { createDeviceDetector } from '@/utils/device'
+// 1.2 设备检测工具
+import { useDevice } from '@/utils/device'
 
 /* ===== 2. 路由和工具初始化 ===== */
 const router = useRouter()
@@ -35,24 +33,11 @@ const props = defineProps({
 })
 
 /* ===== 4. 响应式状态数据 ===== */
-// 4.1 设备状态管理
-const isMobile = ref(false) // 是否是小屏幕设备（≤768px）
-let deviceDetector = null
+// 4.1 设备状态管理 - 使用简化的 useDevice 组合式函数
+const { isMobile } = useDevice()
 
-/* ===== 5. 核心工具函数 ===== */
-// 5.1 设备状态更新函数
-/**
- * 更新设备状态
- * @description 通过设备检测器回调更新组件的设备状态
- * @param {Object} deviceState - 设备状态对象
- * @returns {void}
- */
-const updateDeviceState = (deviceState) => {
-  isMobile.value = deviceState.isMobile
-}
-
-/* ===== 6. 业务逻辑函数 ===== */
-// 6.1 路由导航处理
+/* ===== 5. 业务逻辑函数 ===== */
+// 5.1 路由导航处理
 /**
  * 点击卡片查看动漫详情
  * @param {Object} animeItem - 动漫数据对象
@@ -75,7 +60,7 @@ const viewAnimeDetail = (animeItem) => {
   router.push(routeParams)
 }
 
-// 6.2 图片加载事件处理
+// 5.2 图片加载事件处理
 /**
  * 图片加载完成处理函数
  * @param {Event} event - 图片加载事件
@@ -102,34 +87,10 @@ const handleImageError = () => {
   // }
 }
 
-/* ===== 7. 组件生命周期管理 ===== */
-// 7.1 组件挂载生命周期
-/**
- * 组件挂载时执行初始化
- * @description 使用设备检测器统一管理设备状态变化
- * @returns {void}
- */
-onMounted(() => {
-  // 创建设备检测器，自动监听设备状态变化
-  deviceDetector = createDeviceDetector(updateDeviceState)
-})
-
-// 7.2 组件卸载生命周期
-/**
- * 组件卸载时执行资源清理
- * @description 销毁设备检测器，自动清理所有事件监听器
- * @returns {void}
- */
-onUnmounted(() => {
-  if (deviceDetector) {
-    deviceDetector.destroy()
-    deviceDetector = null
-  }
-})
+// useDevice 会自动处理生命周期，无需手动管理
 
 defineExpose({
   isMobile,
-  updateDeviceState,
   viewAnimeDetail,
 })
 </script>

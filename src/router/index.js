@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { setHomeSEO, setTypeSEO } from '@/utils/seo'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,19 +60,6 @@ const router = createRouter({
       ],
     },
   ],
-})
-
-// 路由守卫 - 处理SEO
-router.beforeEach((to, from, next) => {
-  // 根据路由设置相应的SEO信息
-  if (to.name === 'Home') {
-    setHomeSEO()
-  } else if (to.name === 'AnimeType' && to.params.type) {
-    setTypeSEO(to.params.type)
-  }
-  // 详情页的SEO会在组件内部根据具体数据设置
-
-  next()
 })
 
 export default router

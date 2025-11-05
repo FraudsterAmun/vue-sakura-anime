@@ -3,7 +3,7 @@
 
 /* ===== 1. 导入依赖 ===== */
 // Vue 核心组合式API
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
 // Swiper轮播组件
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode } from 'swiper/modules'
@@ -12,7 +12,7 @@ import 'swiper/css/free-mode'
 // 筛选配置数据
 import { filterConfig } from '@/utils/filterConfig'
 // 设备检测工具
-import { createDeviceDetector } from '@/utils/device'
+import { useDevice } from '@/utils/device'
 
 /* ===== 2. 组件事件和配置初始化 ===== */
 // 声明组件事件
@@ -21,9 +21,8 @@ const emit = defineEmits(['filter-change'])
 const swiperModules = [FreeMode]
 
 /* ===== 3. 响应式状态数据 ===== */
-// 3.1 设备和布局状态
-const isMobile = ref(false)
-let deviceDetector = null
+// 3.1 设备和布局状态 - 使用简化的 useDevice 组合式函数
+const { isMobile } = useDevice()
 
 // 3.2 筛选器状态数据
 const filters = ref({
@@ -64,20 +63,8 @@ const activeFilterTags = computed(() => {
   return tags
 })
 
-/* ===== 6. 核心工具函数 ===== */
-// 6.1 设备状态更新函数
-/**
- * 更新设备状态
- * @description 通过设备检测器回调更新组件的设备状态
- * @param {Object} deviceState - 设备状态对象
- * @returns {void}
- */
-const updateDeviceState = (deviceState) => {
-  isMobile.value = deviceState.isMobile
-}
-
-/* ===== 7. 筛选业务逻辑函数 ===== */
-// 7.1 单项筛选处理
+/* ===== 6. 筛选业务逻辑函数 ===== */
+// 6.1 单项筛选处理
 /**
  * 处理筛选项点击事件
  * @param {string} filterKey - 筛选类型键名 (type/region/year/letter)
@@ -124,30 +111,7 @@ const resetAllFilters = () => {
   })
 }
 
-/* ===== 8. 组件生命周期和事件管理 ===== */
-// 8.1 组件挂载生命周期
-/**
- * 组件挂载时执行初始化流程
- * @description 使用设备检测器统一管理设备状态变化
- * @returns {void}
- */
-onMounted(() => {
-  // 创建设备检测器，自动监听设备状态变化
-  deviceDetector = createDeviceDetector(updateDeviceState)
-})
-
-// 8.2 组件卸载生命周期
-/**
- * 组件卸载时执行资源清理
- * @description 销毁设备检测器，自动清理所有事件监听器
- * @returns {void}
- */
-onUnmounted(() => {
-  if (deviceDetector) {
-    deviceDetector.destroy()
-    deviceDetector = null
-  }
-})
+// useDevice 会自动处理生命周期，无需手动管理
 </script>
 
 <template>
@@ -179,6 +143,7 @@ onUnmounted(() => {
             <span class="reset-link cursor-pointer" @click="resetAllFilters">重新筛选</span>
           </div>
         </div>
+
         <div v-for="config in filterConfig" :key="config.key" class="filter-row flex items-start">
           <!-- 筛选维度标签 -->
           <div class="filter-label flex-shrink-0">
@@ -217,10 +182,8 @@ onUnmounted(() => {
 
             <span v-if="activeFilterTags.length === 0" class="filter-option-mobile"> 全部 </span>
           </div>
-          <div class="header-right">
-            <span class="reset-link flex-shrink-0 cursor-pointer" @click="resetAllFilters"
-              >重新筛选</span
-            >
+          <div class="header-right flex-shrink-0">
+            <span class="reset-link cursor-pointer" @click="resetAllFilters">重新筛选</span>
           </div>
         </div>
         <div

@@ -6,6 +6,7 @@ import { Icon } from '@iconify/vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useScroll, useElementBounding } from '@vueuse/core'
 import SearchBox from '@/components/SearchBox.vue'
+import { useDevice } from '@/utils/device'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,11 +20,8 @@ const shouldShowDetailBackground = computed(() => {
   return isDetailPage.value && scrollY.value >= headerHeight.value
 })
 
-// 设备检测
-const isMobile = ref(false)
-const checkDevice = () => {
-  isMobile.value = window.innerWidth <= 768
-}
+// 设备检测 - 使用简化的 useDevice 组合式函数
+const { isMobile } = useDevice()
 
 // 根据country参数显示对应的标题
 const mobileTitle = computed(() => {
@@ -77,8 +75,7 @@ watch(
 
 onMounted(() => {
   init()
-  checkDevice()
-  window.addEventListener('resize', checkDevice)
+  // useDevice 会自动处理设备检测，无需手动初始化
 })
 
 // ================================
@@ -351,8 +348,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  // 清理设备检测事件监听器
-  window.removeEventListener('resize', checkDevice)
+  // useDevice 会自动清理，无需手动销毁
 
   // 清理导航拖拽事件监听器
   if (navRef.value) {

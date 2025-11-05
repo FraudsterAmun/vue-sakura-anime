@@ -24,15 +24,14 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 // 设备检测工具
-import { createDeviceDetector } from '@/utils/device'
+import { useDevice } from '@/utils/device'
 
 /* ===== 2. 状态管理初始化 ===== */
 const homeStore = useHomeStore()
 
 /* ===== 3. 响应式数据定义 ===== */
-// 移动端检测
-const isMobile = ref(false)
-let deviceDetector = null
+// 移动端检测 - 使用简化的 useDevice 组合式函数
+const { isMobile } = useDevice()
 
 // 当前选中的星期
 const currentWeekday = ref(getTodayWeekday())
@@ -64,14 +63,6 @@ function getTodayWeekday() {
   const dayOfWeek = today.getDay() // 0-6，0代表周日
   // 转换为1-7，1代表周一，7代表周日
   return dayOfWeek === 0 ? 7 : dayOfWeek
-}
-
-/**
- * 更新设备状态
- * @param {Object} deviceState - 设备状态对象
- */
-function updateDeviceState(deviceState) {
-  isMobile.value = deviceState.isMobile
 }
 
 /* ===== 5. 计算属性 ===== */
@@ -167,13 +158,12 @@ function onBannerSwiper(swiper) {
 
 /* ===== 7. 生命周期钩子 ===== */
 onMounted(() => {
-  // 1. 初始化设备检测器
-  deviceDetector = createDeviceDetector(updateDeviceState)
+  // useDevice 会自动处理设备检测
 
-  // 2. 获取数据
+  // 获取数据
   const todayWeekday = getTodayWeekday()
 
-  // 3. 并行加载所有数据
+  // 并行加载所有数据
   Promise.allSettled([
     homeStore.getJapanWeekAnimeList(todayWeekday),
     homeStore.getBannerList(),
@@ -190,11 +180,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  // 清理设备检测器资源
-  if (deviceDetector) {
-    deviceDetector.destroy()
-    deviceDetector = null
-  }
+  // useDevice 会自动清理，无需手动销毁
 })
 </script>
 

@@ -25,6 +25,7 @@ import AnimeCard from '@/components/AnimeCard.vue'
 
 // 工具函数
 import { filterByFirstLetter } from '@/utils/letterFilter'
+import { useDevice } from '@/utils/device'
 
 /* ===== 2. 状态管理和路由初始化 ===== */
 const route = useRoute()
@@ -33,9 +34,8 @@ const countryStore = useCountryStore()
 /* ===== 3. 响应式状态数据 ===== */
 // 页面状态（已移除未使用的animeData变量）
 
-// 响应式设计状态
-const isMobile = ref(false) // 是否是小屏幕（≤768px）
-const screenWidth = ref(window.innerWidth) // 当前屏幕宽度
+// 响应式设计状态 - 使用简化的 useDevice 组合式函数
+const { isMobile, screenWidth } = useDevice()
 
 // 分页状态
 const currentPage = ref(1) // 当前页码
@@ -48,37 +48,12 @@ const activeFilters = ref({
   letter: '全部', // 首字母筛选条件
 })
 
-/* ===== 4. 工具函数 ===== */
-/**
- * 检测屏幕尺寸并更新响应式状态
- */
-function checkScreenSize() {
-  const oldPageSize = pageSize.value
-  screenWidth.value = window.innerWidth
-  isMobile.value = window.innerWidth <= 768
-
-  // 如果每页显示数量发生变化，重置到第一页
-  if (oldPageSize !== pageSize.value) {
-    currentPage.value = 1
-  }
-}
-
-/**
- * 处理窗口大小变化事件
- */
-function handleResize() {
-  checkScreenSize()
-}
-
 /* ===== 5. 计算属性（按依赖关系排序） ===== */
 // 页面标题（基于路由参数）
 const typeTitle = computed(() => {
   const type = route.params.type
   return type ? `${type} 动漫` : '动漫分类'
 })
-
-// 类型信息（直接映射store数据）
-const typeInfo = computed(() => countryStore.type_info)
 
 // 总数据源（从store获取，确保数据类型安全）
 const totalData = computed(() => {
@@ -197,6 +172,11 @@ watch(pageSize, (newPageSize, oldPageSize) => {
     }
   }
 })
+
+// 当屏幕宽度变化导致pageSize变化时，重置到第一页
+watch(screenWidth, () => {
+  currentPage.value = 1
+})
 /* ===== 7. 路由参数监听 ===== */
 // 简单防抖：记录上次请求时间
 let lastRequestTime = 0
@@ -252,19 +232,16 @@ watch(
 onMounted(() => {
   console.log('📄 Type page mounted, type:', route.params.type)
 
-  // 1. 初始化响应式检测
-  checkScreenSize()
-  window.addEventListener('resize', handleResize)
+  // useDevice 会自动处理设备检测
 
-  // 2. 获取动漫数据
+  // 获取动漫数据
   nextTick(() => {
     countryStore.getAnimeType(route.params.type)
   })
 })
 
 onUnmounted(() => {
-  // 清理事件监听器，防止内存泄漏
-  window.removeEventListener('resize', handleResize)
+  // useDevice 会自动清理，无需手动销毁
   console.log('📄 Type page unmounted')
 })
 </script>
@@ -277,11 +254,6 @@ onUnmounted(() => {
       <h1>{{ typeTitle }}</h1>
       <p v-if="!countryStore.loading">共 {{ totalData.length }} 部动漫</p>
       <p v-else class="loading-text">正在加载中...</p>
-
-      <!-- 调试信息：显示类型信息 -->
-      <div v-if="typeInfo && Object.keys(typeInfo).length > 0" class="type-info">
-        <p>类型信息：{{ JSON.stringify(typeInfo) }}</p>
-      </div>
     </div>
 
     <!-- ================================ -->
@@ -470,20 +442,6 @@ onUnmounted(() => {
 .total-hint {
   color: #999;
   font-size: 14px;
-}
-
-.type-info {
-  margin-top: 10px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  border-left: 3px solid #ff6600;
-}
-
-.type-info p {
-  color: #ccc;
-  font-size: 14px;
-  margin: 0;
 }
 
 /* ===== 3. 动漫网格布局样式 ===== */
