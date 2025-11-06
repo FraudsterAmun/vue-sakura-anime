@@ -40,8 +40,18 @@
       <p align="center"><strong>首页 - 轮播图与推荐内容</strong></p>
     </td>
     <td width="50%">
-      <img src="screenshots/category_page.png" alt="分类页" />
+      <img src="screenshots/home_page2.png" alt="首页推荐" />
+      <p align="center"><strong>首页 - 每周新番与排行榜</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/type_page.png" alt="分类页" />
       <p align="center"><strong>分类页 - 多维筛选与分页</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/search.png" alt="搜索页" />
+      <p align="center"><strong>搜索页 - 实时搜索与历史记录</strong></p>
     </td>
   </tr>
   <tr>
@@ -50,8 +60,8 @@
       <p align="center"><strong>详情页 - 动漫信息与播放列表</strong></p>
     </td>
     <td width="50%">
-      <img src="screenshots/search_page.png" alt="搜索页" />
-      <p align="center"><strong>搜索页 - 实时搜索与历史记录</strong></p>
+      <img src="screenshots/detail_page2.png" alt="详情页推荐" />
+      <p align="center"><strong>详情页 - 相关推荐</strong></p>
     </td>
   </tr>
 </table>
@@ -61,11 +71,11 @@
 <table>
   <tr>
     <td width="25%">
-      <img src="screenshots/phone_home.png" alt="移动端首页" />
+      <img src="screenshots/phone_home_page.png" alt="移动端首页" />
       <p align="center"><strong>移动端首页</strong></p>
     </td>
     <td width="25%">
-      <img src="screenshots/phone_category.png" alt="移动端分类" />
+      <img src="screenshots/phone_type_page.png" alt="移动端分类" />
       <p align="center"><strong>移动端分类</strong></p>
     </td>
     <td width="25%">

@@ -246,7 +246,7 @@ defineExpose({
 
 /* ===== 5. 副标题 ===== */
 .card_header_right {
-  margin-right: 90px;
+  margin-right: 105px;
 }
 
 /* ===== 6. 响应式 ===== */

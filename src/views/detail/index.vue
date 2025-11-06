@@ -861,7 +861,7 @@ html {
 }
 
 .detail_others {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 /* 4.6 工具图标样式 */
@@ -1324,7 +1324,7 @@ html {
     padding-right: 0;
   }
   .detail_others {
-    margin-top: 30px;
+    margin-top: 15px;
   }
   .detail_info {
     width: 100%;
