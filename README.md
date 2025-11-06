@@ -29,6 +29,60 @@
 
 ---
 
+## 📸 项目截图
+
+### 💻 桌面端展示
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/home_page.png" alt="首页" />
+      <p align="center"><strong>首页 - 轮播图与推荐内容</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/category_page.png" alt="分类页" />
+      <p align="center"><strong>分类页 - 多维筛选与分页</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/detail_page.png" alt="详情页" />
+      <p align="center"><strong>详情页 - 动漫信息与播放列表</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/search_page.png" alt="搜索页" />
+      <p align="center"><strong>搜索页 - 实时搜索与历史记录</strong></p>
+    </td>
+  </tr>
+</table>
+
+### 📱 移动端展示
+
+<table>
+  <tr>
+    <td width="25%">
+      <img src="screenshots/phone_home.png" alt="移动端首页" />
+      <p align="center"><strong>移动端首页</strong></p>
+    </td>
+    <td width="25%">
+      <img src="screenshots/phone_category.png" alt="移动端分类" />
+      <p align="center"><strong>移动端分类</strong></p>
+    </td>
+    <td width="25%">
+      <img src="screenshots/phone_detail.png" alt="移动端详情" />
+      <p align="center"><strong>移动端详情</strong></p>
+    </td>
+    <td width="25%">
+      <img src="screenshots/phone_search.png" alt="移动端搜索" />
+      <p align="center"><strong>移动端搜索</strong></p>
+    </td>
+  </tr>
+</table>
+
+> 💡 **响应式设计**：支持桌面端（6列）、平板端（4列）、移动端（3列）自适应布局
+
+---
+
 ## 🛠️ 技术栈
 
 ### 核心框架
@@ -435,19 +489,3 @@ const fetchAnimeList = async (params) => {
 - [Pinia](https://pinia.vuejs.org/) - Vue 状态管理库
 
 ---
-
-## 📞 联系方式
-
-- **GitHub**: [@your-username](https://github.com/your-username)
-- **Email**: your-email@example.com
-- **项目链接**: [https://github.com/your-username/vue-movie](https://github.com/your-username/vue-movie)
-
----
-
-<div align="center">
-
-**如果这个项目对你有帮助，请给一个 ⭐️**
-
-Made with ❤️ by [Your Name](https://github.com/your-username)
-
-</div>
