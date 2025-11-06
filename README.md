@@ -436,18 +436,4 @@ const fetchAnimeList = async (params) => {
 
 ---
 
-## 📞 联系方式
-
-- **GitHub**: [@your-username](https://github.com/your-username)
-- **Email**: your-email@example.com
-- **项目链接**: [https://github.com/your-username/vue-movie](https://github.com/your-username/vue-movie)
-
----
-
-<div align="center">
-
-**如果这个项目对你有帮助，请给一个 ⭐️**
-
-Made with ❤️ by [Your Name](https://github.com/your-username)
-
 </div>
