@@ -20,7 +20,7 @@ const shouldShowDetailBackground = computed(() => {
   return isDetailPage.value && scrollY.value >= headerHeight.value
 })
 
-// 设备检测 - 使用简化的 useDevice 组合式函数
+// 设备检测
 const { isMobile } = useDevice()
 
 // 根据country参数显示对应的标题
@@ -118,7 +118,7 @@ watch(showSidebar, (newValue) => {
   }
 })
 
-// 侧边栏菜单数据（完全按照截图）
+// 侧边栏菜单数据
 const sidebarMenuItems = [
   {
     id: '1',
@@ -372,7 +372,7 @@ onBeforeUnmount(() => {
       }"
     >
       <div class="header-container">
-        <!-- 桌面端Header (桌面端或非详情页) -->
+        <!-- 桌面端Header -->
         <template v-if="!isMobile || !isDetailPage">
           <div class="logo"></div>
           <nav class="nav" ref="navRef">
